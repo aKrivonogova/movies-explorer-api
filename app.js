@@ -1,19 +1,19 @@
 const express = require('express');
 require('dotenv').config();
 const { errors } = require('celebrate');
-const { requestLogger, errorLogger } = require('./middlewares/logger');
 const mongoose = require('mongoose');
-const limiter = require('./middlewares/rateLimiter')
+const helmet = require('helmet');
 const bodyParser = require('body-parser');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
+const limiter = require('./middlewares/rateLimiter');
 const routes = require('./routes/index');
 const cors = require('./middlewares/cors');
-const helmet = require('helmet');
 const defaultErrorHandler = require('./middlewares/defaultErrorHandler');
 
 const app = express();
 
-const { PORT, BD_URL, NODE_ENV } = process.env;
-mongoose.connect(NODE_ENV === 'production' ? BD_URL : 'mongodb://127.0.0.1/bitfilmsdb');
+const { PORT, BD_URL } = process.env;
+mongoose.connect(BD_URL);
 
 app.use(cors);
 app.use(helmet());
@@ -37,4 +37,4 @@ app.use(errors());
 
 app.use(defaultErrorHandler);
 
-app.listen(PORT, () => {});
+app.listen(PORT, () => { });

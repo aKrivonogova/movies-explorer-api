@@ -42,7 +42,7 @@ const updateUserInfo = (req, res, next) => {
         throw new ValidationError('Введены невалидные данные.');
       } else if (err.name === 'CastError') {
         throw new ValidationError('Введен невалидный _id пользователя.');
-      } else if (err.codeName === 'DuplicateKey') {
+      } else if (err.name === 'DuplicateKey') {
         throw new DuplicateError('Пользователь с таким email уже существует.');
       }
       return next(err);
@@ -66,7 +66,7 @@ const createUser = (req, res, next) => {
       });
     })
       .catch((err) => {
-        if (err.name === 'MongoServerError' && err.statusCode === 1100) {
+        if (err.name === 'MongoServerError' && err.code === 1100) {
           return next(new DuplicateError('Пользователь с таким email уже существует'));
         }
         if (err.name === 'ValidationError') {
