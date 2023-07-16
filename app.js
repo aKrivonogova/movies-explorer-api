@@ -37,4 +37,4 @@ app.use(errors());
 
 app.use(defaultErrorHandler);
 
-app.listen(PORT, () => { });
+app.listen(PORT, () => {});
