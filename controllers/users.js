@@ -52,6 +52,7 @@ const updateUserInfo = (req, res, next) => {
 };
 
 //  регистрация пользователя
+// использование bcrypt
 const createUser = (req, res, next) => {
   const {
     name, email, password,
