@@ -26,8 +26,8 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: {
-      validator(url) {
-        return /^((http|https):\/\/)(www\.)?([\w\W\d]{1,})(\.)([a-zA-Z]{1,10})([\w\W\d]{1,})?$/.test(url);
+      validator(string) {
+        return validator.isUrl(string);
       },
       message: (props) => `${props.value} ссылка на картинку не валидна!`,
     },
@@ -36,8 +36,8 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: {
-      validator(url) {
-        return /^((http|https):\/\/)(www\.)?([\w\W\d]{1,})(\.)([a-zA-Z]{1,10})([\w\W\d]{1,})?$/.test(url);
+      validator(string) {
+        return validator.isUrl(string);
       },
       message: (props) => `${props.value} ссылка на картинку не валидна!`,
     },
@@ -46,8 +46,8 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: {
-      validator(url) {
-        return /^((http|https):\/\/)(www\.)?([\w\W\d]{1,})(\.)([a-zA-Z]{1,10})([\w\W\d]{1,})?$/.test(url);
+      validator(string) {
+        return validator.isUrl(string);
       },
       message: (props) => `${props.value} ссылка на картинку не валидна!`,
     },
@@ -69,6 +69,6 @@ const movieSchema = new mongoose.Schema({
   nameEN: {
     type: String,
     required: true,
-  }
-})
+  },
+});
 module.exports = mongoose.model('movie', movieSchema);

@@ -9,6 +9,16 @@
     "ecmaVersion": "latest"
   },
   "rules": {
+    "func-names": [
+      "error",
+      "never"
+    ],
+    "consistent-return": [
+      0,
+      {
+        "treatUndefinedAsUnspecified": true
+      }
+    ],
     "no-underscore-dangle": [
       "error",
       {
@@ -25,7 +35,6 @@
         "args": "none",
         "ignoreRestSiblings": false
       }
-    ],
-    "treatUndefinedAsUnspecified": false
+    ]
   }
 }

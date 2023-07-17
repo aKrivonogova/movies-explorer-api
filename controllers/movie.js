@@ -11,7 +11,7 @@ const getUserMovies = (req, res, next) => {
   Movie.find({ owner })
     .then((movies) => res.status(STATUS_OK).send(movies))
     .catch(next);
-}
+};
 
 const createMovie = (req, res, next) => {
   const {
@@ -73,4 +73,4 @@ const deleteMovie = (req, res, next) => {
     .catch(next);
 };
 
-module.exports = { createMovie, getUserMovies, deleteMovie }
+module.exports = { createMovie, getUserMovies, deleteMovie };

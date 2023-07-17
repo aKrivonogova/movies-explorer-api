@@ -1,7 +1,8 @@
 const { celebrate, Joi } = require('celebrate');
+
 const regExpUrl = /^((http|https):\/\/)(www\.)?([\w\W\d]{1,})(\.)([a-zA-Z]{1,10})([\w\W\d]{1,})?$/;
 
-/*---------------------------Пользователь------------------------*/
+/*  ---------------------------Пользователь------------------------*/
 
 const updateUserInfoValidation = celebrate({
   body: Joi.object().keys({
@@ -24,7 +25,7 @@ const createUserValidation = celebrate({
     password: Joi.string().required(),
   }),
 });
-/*---------------------------фильмы------------------------*/
+/*  ---------------------------фильмы------------------------*/
 const deleteMovieValidation = celebrate({
   params: Joi.object().keys({
     id: Joi.string().required().hex().length(24),
@@ -47,4 +48,10 @@ const createMovieValidaation = celebrate({
   }),
 });
 
-module.exports = { loginUserValidation, createUserValidation, deleteMovieValidation, updateUserInfoValidation, createMovieValidaation }
+module.exports = {
+  loginUserValidation,
+  createUserValidation,
+  deleteMovieValidation,
+  updateUserInfoValidation,
+  createMovieValidaation,
+};

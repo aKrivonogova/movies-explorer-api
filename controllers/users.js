@@ -1,10 +1,11 @@
-const User = require('../models/user');
 const bcrypt = require('bcryptjs');
-const { SECRET } = process.env;
+
+const { SECRET, NODE_ENV } = process.env;
 const jwt = require('jsonwebtoken');
-const  DuplicateError = require('../errors/DuplicateError');
-const  ValidationError  = require('../errors/ValidationError');
-const  NotFoundError  = require('../errors/NotFoundError');
+const User = require('../models/user');
+const DuplicateError = require('../errors/DuplicateError');
+const ValidationError = require('../errors/ValidationError');
+const NotFoundError = require('../errors/NotFoundError');
 
 const STATUS_OK = 200;
 const STATUS_OK_CREATE = 201;
@@ -20,7 +21,7 @@ const getCurrentUser = (req, res, next) => {
     .catch((err) => {
       next(err);
     });
-}
+};
 
 // обновить данные пользователя
 const updateUserInfo = (req, res, next) => {
@@ -42,14 +43,13 @@ const updateUserInfo = (req, res, next) => {
         throw new ValidationError('Введены невалидные данные.');
       } else if (err.name === 'CastError') {
         throw new ValidationError('Введен невалидный _id пользователя.');
-      } else if (err.name === 'DuplicateKey') {
+      } else if (err.code === 1100) {
         throw new DuplicateError('Пользователь с таким email уже существует.');
       }
       return next(err);
     })
     .catch(next);
-}
-
+};
 
 //  регистрация пользователя
 const createUser = (req, res, next) => {
@@ -75,19 +75,21 @@ const createUser = (req, res, next) => {
         return next(err);
       });
   });
-}
+};
 
 const login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
       res.send({
-        token: jwt.sign({ _id: user._id }, SECRET, { expiresIn: '7d' }),
+        token: jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? SECRET : 'dev-secret', { expiresIn: '7d' }),
       });
     })
     .catch((err) => {
       next(err);
     });
-}
+};
 
-module.exports = { getCurrentUser, updateUserInfo, createUser, login }
+module.exports = {
+  getCurrentUser, updateUserInfo, createUser, login,
+};
