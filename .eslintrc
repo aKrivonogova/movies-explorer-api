@@ -1,13 +1,5 @@
 {
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "es2021": true
-  },
   "extends": "airbnb-base",
-  "parserOptions": {
-    "ecmaVersion": "latest"
-  },
   "rules": {
     "func-names": ["error", "never"],
     "consistent-return": [
@@ -24,14 +16,6 @@
         ]
       }
     ],
-    "no-console": "off",
-    "no-unused-vars": [
-      "error",
-      {
-        "vars": "all",
-        "args": "none",
-        "ignoreRestSiblings": false
-      }
-    ]
+    "no-console": "off"
   }
 }
