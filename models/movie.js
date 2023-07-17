@@ -27,7 +27,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(string) {
-        return validator.isUrl(string);
+        return validator.isURL(string);
       },
       message: (props) => `${props.value} ссылка на картинку не валидна!`,
     },
@@ -37,7 +37,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(string) {
-        return validator.isUrl(string);
+        return validator.isURL(string);
       },
       message: (props) => `${props.value} ссылка на картинку не валидна!`,
     },
@@ -47,7 +47,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(string) {
-        return validator.isUrl(string);
+        return validator.isURL(string);
       },
       message: (props) => `${props.value} ссылка на картинку не валидна!`,
     },
