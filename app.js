@@ -9,10 +9,11 @@ const limiter = require('./middlewares/rateLimiter');
 const routes = require('./routes/index');
 const cors = require('./middlewares/cors');
 const defaultErrorHandler = require('./middlewares/defaultErrorHandler');
+const config = require('./utils/config');
 
 const app = express();
 
-const { PORT, BD_URL } = process.env;
+const { PORT, BD_URL = config.DATA_BASE_URL } = process.env;
 mongoose.connect(BD_URL);
 
 app.use(cors);
