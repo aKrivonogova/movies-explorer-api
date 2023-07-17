@@ -20,6 +20,7 @@ npm-debug.log*
 .env.local
 .env.development.local
 .env.test.local
+.env
 .env.production.local
 
 # Optional npm cache directory
