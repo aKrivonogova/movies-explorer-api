@@ -3,6 +3,8 @@ const allowedCorsUrl = [
   'http://localhost:3000',
   'https://localhost:3001',
   'http://localhost:3001',
+  'http://akrivonogova.nomoreparties.sbs',
+  'https://akrivonogova.nomoreparties.sbs',
 ];
 
 const ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
