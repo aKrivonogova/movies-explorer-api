@@ -8,3 +8,4 @@ router.get('/users/me', getCurrentUser);
 router.patch('/users/me', updateUserInfoValidation, updateUserInfo);
 
 module.exports = router;
+
