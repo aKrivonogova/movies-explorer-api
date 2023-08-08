@@ -59,18 +59,16 @@ const createMovie = (req, res, next) => {
 };
 
 const deleteMovie = (req, res, next) => {
-  const { id } = req.params;
-  Movie.findById(id).select('+owner')
+  const { movieId } = req.params;
+  Movie.find({ movieId }).select('+owner')
     .then((movie) => {
       if (!movie) {
         throw new NotFoundError('Нет фильма с таким _id.');
-      } else if (movie.owner.toString() !== req.user._id) {
-        return new ForbiddenError('Невозможно удалить фильм другого пользователя.');
       }
-      Movie.findByIdAndDelete(id).select('-owner')
-        .then((deletedMovie) => res.status(STATUS_OK).send(deletedMovie));
-    })
-    .catch(next);
+      Movie.deleteOne({ movieId }).select('-owner').then((deletedMovie) => res.status(STATUS_OK).send(deletedMovie));
+    }).catch(next);
 };
 
-module.exports = { createMovie, getUserMovies, deleteMovie };
+module.exports = {
+  createMovie, getUserMovies, deleteMovie,
+};

@@ -28,7 +28,7 @@ const createUserValidation = celebrate({
 /*  ---------------------------фильмы------------------------*/
 const deleteMovieValidation = celebrate({
   params: Joi.object().keys({
-    id: Joi.string().required().hex().length(24),
+    id: Joi.string().required(),
   }),
 });
 
